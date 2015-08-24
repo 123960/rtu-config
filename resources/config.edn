@@ -1,0 +1,20 @@
+;; Put the file name at the string map below
+{:file-map
+   { "Atomic Benefit.xml"                         "databaseAtomicBenefits.xml"
+     "Bundle Benefit.xml"                         "databaseBundleBenefits.xml"
+     "Campaign Actions.xml"                       "databaseCampaignActions.xml"
+     "Campaign Lis.xml"                           "databaseCampaigns.xml"
+     "Campaign Orders.xml"                        "databaseCampaingOrder.xml"
+     "Campaign Plugin.xml"                        "dataSync.xml"
+     "Domain Retriver Configuration.xml"          "databaseDomainRetriever.xml"
+     "Dynamic Expression.xml"                     "databaseDynamicExpression.xml"
+     "Graph Benefit.xml"                          "databaseGraphBenefits.xml"
+     "Metric Management Business Definitions.xml" "databaseMetricManagement.xml"
+     "Notifier.xml"                               "databaseNotifier.xml"
+     "PolicySet.xml"                              "databasePolicyRules.xml"
+     "Queue Benefit.xml"                          "databaseQueueBenefits"
+     "Rules Management - Actions.xml"             "databaseRuleActions.xml"
+     "Rules Management.xml"                       "ruleManagementConfiguration.xml"
+     "State Machine.xml"                          "databaseStateMachine.xml" 
+   }
+}
