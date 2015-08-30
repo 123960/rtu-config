@@ -11,8 +11,8 @@
   (slurp "resources/installation.xml"))
 
 (defn install-file
-  [config-name config-desc]
-  (s/replace (s/replace install-base-file #"<CONFIG-NAME>" config-name) #"<CONFIG-DESC>" config-desc))
+  [d-path config-name config-desc]
+  (spit (str d-path "/installation.xml") (s/replace (s/replace install-base-file #"<!--CONFIG-NAME-->" config-name) #"<!--CONFIG-DESC-->" config-desc)))
 
 (defn create-dir
   [d-path]
@@ -27,14 +27,21 @@
 
 (defn rtu-config-files
   [input-path output-path]
-  (for [file (file-list input-path)]
-      (copy-file (str input-path "/" file) (str output-path (config file)))))
+  (doseq [file (file-list input-path)] 
+    (copy-file (str input-path "/" file) (str output-path (config file)))))
 
 (defn -main
   "Creates a config ready-to-up to ACM based on a config downloaded from ACM replacing the name of the files with the correct name"
-  [config-path config-name config-desc & args]
-  (if (create-dir "./rtu-configproperties/")
-    (rtu-config-files config-path "./rtu-configproperties/")
-    (rtu-config-files config-path "./rtu-configproperties/")))
-
- ;;#(install-file config-name config-desc)
+  [& args]
+  (let [config-path (first args) config-name (second args) config-desc (get args 2)]
+    (if (and config-path (and config-name config-desc))
+      (if (create-dir "./rtu-configproperties/")
+        (if (install-file "./rtu-configproperties/" config-name config-desc)
+          (println "something strange happened")
+          (rtu-config-files config-path "./rtu-configproperties/"))
+        (println "cannot create rtu-configproperties directory, maybe it already exist"))
+      (println "Creates a config ready-to-up to ACM based on a config downloaded from ACM replacing the name of the files with the correct name
+                Args expected: [config-path config-name config-desc]
+                  config-path = Path to directory with the configuration downloaded from ACM
+                  config-name = Name of the configuration in the installation.xml file (tag <ns3:name>)
+                  config-desc = Description of the configuration in the installation.xml file (tag <ns3:description>)"))))

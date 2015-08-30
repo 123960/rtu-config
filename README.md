@@ -1,24 +1,27 @@
 # rtu-config
 
-FIXME: description
+  Creates a config ready-to-up to ACM based on a config downloaded from ACM replacing the name of the files with the correct name
+  and creating an installation.xml file.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+  Just download the jar file.
 
 ## Usage
 
-FIXME: explanation
+  $ java -jar rtu-config-0.1.0-standalone.jar [config-path config-name config-desc]
 
-    $ java -jar rtu-config-0.1.0-standalone.jar [args]
+  config-path = Path to directory with the configuration downloaded from ACM
+  config-name = Name of the configuration in the installation.xml file (tag <ns3:name>)
+  config-desc = Description of the configuration in the installation.xml file (tag <ns3:description>)
 
 ## Options
 
-FIXME: listing of options this app accepts.
+  None option has been implemented yet
 
 ## Examples
 
-...
+  $ java -jar rtu-config-0.1.0-standalone.jar ""/home/acm-configproperties/14368173677051" "VINI-CONFIG" "VINI-DESC"
 
 ### Bugs
 
@@ -30,7 +33,4 @@ FIXME: listing of options this app accepts.
 
 ## License
 
-Copyright © 2015 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Copyright © 2015
