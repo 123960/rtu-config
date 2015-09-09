@@ -12,7 +12,7 @@
      "Metric Management Business Definitions.xml" "databaseMetricManagement.xml"
      "Notifier.xml"                               "databaseNotifier.xml"
      "PolicySet.xml"                              "databasePolicyRules.xml"
-     "Queue Benefit.xml"                          "databaseQueueBenefits"
+     "Queue Benefit.xml"                          "databaseQueueBenefits.xml"
      "Rules Management - Actions.xml"             "databaseRuleActions.xml"
      "Rules Management.xml"                       "ruleManagementConfiguration.xml"
      "State Machine.xml"                          "databaseStateMachine.xml" 

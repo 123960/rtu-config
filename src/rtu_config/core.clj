@@ -5,10 +5,10 @@
   (:require [clojure.string  :as s]))
 
 (def config
-  (:file-map (edn/read-string (slurp "resources/config.edn"))))
+  (-> "config.edn" io/resource slurp edn/read-string :file-map))
 
 (def install-base-file
-  (slurp "resources/installation.xml"))
+  (slurp (io/resource "installation.xml")))
 
 (defn install-file
   [d-path config-name config-desc]
@@ -23,7 +23,7 @@
 
 (defn file-list
   [config-path]
-  (for [file (filter #(.isFile %) (file-seq (io/file config-path)))](.getName file)))
+  (for [file (filter #(.isFile %) (-> config-path io/file file-seq))](.getName file)))
 
 (defn rtu-config-files
   [input-path output-path]
@@ -33,7 +33,7 @@
 (defn -main
   "Creates a config ready-to-up to ACM based on a config downloaded from ACM replacing the name of the files with the correct name"
   [& args]
-  (let [config-path (first args) config-name (second args) config-desc (get args 2)]
+  (let [config-path (first args) config-name (second args) config-desc (nth args 2)]
     (if (and config-path (and config-name config-desc))
       (if (create-dir "./rtu-configproperties/")
         (if (install-file "./rtu-configproperties/" config-name config-desc)
